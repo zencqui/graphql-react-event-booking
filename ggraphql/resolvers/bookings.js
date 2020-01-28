@@ -3,7 +3,8 @@ const Event = require('../../models/event');
 const { transformBooking, transformEvent } = require('./resolverHelper');
 
 module.exports = {
-    bookings: async () => {
+    bookings: async (args, req) => {
+
         try {
             const bookings = await Booking.find();
             return bookings.map(booking => {
@@ -29,7 +30,7 @@ module.exports = {
 
         return transformBooking(result);
     },
-    cancelBooking: async (args, req) =>{
+    cancelBooking: async (args, req) => {
 
         if(!req.isAuth) {
             throw new Error('Unauthenticated!');

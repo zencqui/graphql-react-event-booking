@@ -3,7 +3,8 @@ const User = require('../../models/user');
 const { transformEvent } = require('./resolverHelper');
 
 module.exports = {
-    events: async () => {
+    events: async (args, req) => {
+
         try {
         const events = await Event.find();
                 return events.map(event => {
